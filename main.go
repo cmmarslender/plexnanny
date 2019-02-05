@@ -47,6 +47,7 @@ func main() {
 		containerId, _ := getContainerId()
 		result, err := restartContainer( containerId ) ; if err != nil {
 			fmt.Print( err )
+			return
 		}
 		if result != true {
 			fmt.Println( "Could not restart container" )

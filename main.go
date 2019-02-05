@@ -30,7 +30,7 @@ func main() {
 	auth := os.Getenv( "PLEXAUTH" )
 
 	http.HandleFunc( "/", func( w http.ResponseWriter, r *http.Request ) {
-		fmt.Fprintf( w, "Nothing to see here" )
+		fmt.Fprintf( w, "Nothing to see here\n" )
 	})
 
 	http.HandleFunc( "/restartplex", func( w http.ResponseWriter, r *http.Request ) {
@@ -38,12 +38,12 @@ func main() {
 
 		if string(body) != auth {
 			fmt.Printf( "[%s] Unauthorized Restart Attempt!\n", time.Unix( time.Now().Unix(), 0 ) )
-			fmt.Fprintf( w, "Unauthorized" )
+			fmt.Fprintf( w, "Unauthorized\n" )
 			return
 		}
 
 		fmt.Printf( "[%s] Restarting Plex!\n", time.Unix( time.Now().Unix(), 0 ) )
-		fmt.Fprintf( w, "Authorized Request. Restarting Plex." )
+		fmt.Fprintf( w, "Authorized Request. Restarting Plex.\n" )
 		containerId, _ := getContainerId()
 		result, err := restartContainer( containerId ) ; if err != nil {
 			fmt.Print( err )
